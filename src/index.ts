@@ -428,6 +428,17 @@ app.post('/token', (_req: Request, res: Response) => {
     });
 });
 
+app.get('/api/today', (_req: Request, res: Response) => {
+    const sleep = db.getLatestSleep();
+    const recovery = db.getLatestRecovery();
+    res.json({
+        date: new Date().toISOString().split('T')[0],
+        sleep_performance: sleep?.sleep_performance ?? null,
+        sleep_efficiency: sleep?.sleep_efficiency ?? null,
+        recovery_score: recovery?.recovery_score ?? null,
+    });
+});
+		
 		app.get('/login', (_req: Request, res: Response) => {
     const scopes = ['read:profile', 'read:body_measurement', 'read:cycles', 'read:recovery', 'read:sleep', 'read:workout', 'offline'];
     const url = client.getAuthorizationUrl(scopes);
