@@ -401,6 +401,12 @@ async function main(): Promise<void> {
 			res.status(405).send('Method not allowed');
 		});
 
+		app.get('/login', (_req: Request, res: Response) => {
+    const scopes = ['read:profile', 'read:body_measurement', 'read:cycles', 'read:recovery', 'read:sleep', 'read:workout', 'offline'];
+    const url = client.getAuthorizationUrl(scopes);
+    res.redirect(url);
+});
+		
 		app.get('/sse', (_req: Request, res: Response) => {
 			res.status(410).send('SSE endpoint deprecated. Use /mcp with Streamable HTTP transport.');
 		});
