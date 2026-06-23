@@ -365,6 +365,7 @@ async function main(): Promise<void> {
 		});
 
 		app.all('/mcp', async (req: Request, res: Response) => {
+			delete req.headers['authorization'];
 			const sessionId = req.headers['mcp-session-id'] as string | undefined;
 
 			if (req.method === 'DELETE' && sessionId && transports.has(sessionId)) {
