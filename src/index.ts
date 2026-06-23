@@ -401,6 +401,32 @@ async function main(): Promise<void> {
 			res.status(405).send('Method not allowed');
 		});
 
+		app.get('/.well-known/oauth-authorization-server', (req: Request, res: Response) => {
+    const base = `${req.protocol}://${req.get('host')}`;
+    res.json({
+        issuer: base,
+        authorization_endpoint: `${base}/authorize`,
+        token_endpoint: `${base}/token`,
+        response_types_supported: ['code'],
+        grant_types_supported: ['authorization_code'],
+        code_challenge_methods_supported: ['S256'],
+    });
+});
+
+app.get('/authorize', (req: Request, res: Response) => {
+    const { redirect_uri, state } = req.query as { redirect_uri: string; state: string };
+    const code = crypto.randomUUID();
+    res.redirect(`${redirect_uri}?code=${code}&state=${state}`);
+});
+
+app.post('/token', (_req: Request, res: Response) => {
+    res.json({
+        access_token: crypto.randomUUID(),
+        token_type: 'Bearer',
+        expires_in: 86400,
+    });
+});
+
 		app.get('/login', (_req: Request, res: Response) => {
     const scopes = ['read:profile', 'read:body_measurement', 'read:cycles', 'read:recovery', 'read:sleep', 'read:workout', 'offline'];
     const url = client.getAuthorizationUrl(scopes);
