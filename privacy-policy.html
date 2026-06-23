@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy – WHOOP MCP Server</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      max-width: 720px;
+      margin: 60px auto;
+      padding: 0 24px;
+      color: #222;
+      line-height: 1.7;
+    }
+    h1 { font-size: 1.6rem; margin-bottom: 4px; }
+    h2 { font-size: 1.1rem; margin-top: 2em; }
+    p, li { font-size: 0.97rem; }
+    ul { padding-left: 1.4em; }
+    .meta { color: #666; font-size: 0.88rem; margin-bottom: 2.5em; }
+    a { color: #0070f3; }
+  </style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+<p class="meta">Last updated: June 23, 2026</p>
+
+<p>This privacy policy applies to the WHOOP MCP Server ("the Application"), a personal integration tool that connects WHOOP health data to Claude via the Model Context Protocol.</p>
+
+<h2>1. What data is collected</h2>
+<p>The Application accesses the following data from your WHOOP account via the official WHOOP Developer API v2:</p>
+<ul>
+  <li>Recovery scores, HRV, resting heart rate, SpO2, and skin temperature</li>
+  <li>Sleep records (duration, stages, efficiency, respiratory rate)</li>
+  <li>Strain scores, calories, and heart rate zones</li>
+  <li>Workout activity records</li>
+  <li>Basic user profile information</li>
+</ul>
+
+<h2>2. How data is stored</h2>
+<p>Your WHOOP data is cached in a SQLite database on the server you personally deploy and control. OAuth tokens (used to authenticate with WHOOP on your behalf) are stored in the same database. No data is shared with any third party other than the Claude AI assistant you explicitly connect the server to.</p>
+
+<h2>3. How data is used</h2>
+<p>Data is used solely to respond to queries you make through Claude. The Application does not sell, rent, or share your health data with any other person or organization.</p>
+
+<h2>4. Data retention</h2>
+<p>Data is retained in your self-hosted database for up to 90 days of rolling history. You can delete all stored data at any time by removing the database file or decommissioning your server.</p>
+
+<h2>5. Third-party services</h2>
+<p>The Application communicates with:</p>
+<ul>
+  <li><strong>WHOOP</strong> – to fetch your health data (<a href="https://www.whoop.com/us/en/privacy/" target="_blank">WHOOP Privacy Policy</a>)</li>
+  <li><strong>Anthropic / Claude</strong> – to surface data in your AI assistant (<a href="https://www.anthropic.com/privacy" target="_blank">Anthropic Privacy Policy</a>)</li>
+</ul>
+
+<h2>6. Your rights</h2>
+<p>You can revoke the Application's access to your WHOOP data at any time by visiting your WHOOP account settings and removing the authorized application. You can also shut down your server or delete the OAuth tokens from the database directly.</p>
+
+<h2>7. Contact</h2>
+<p>This is a personal, non-commercial project. For any questions, contact the server operator at <a href="mailto:gaetan.salesse2021@gmail.com">gaetan.salesse2021@gmail.com</a>.</p>
+
+</body>
+</html>
